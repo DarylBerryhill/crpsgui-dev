@@ -30,10 +30,17 @@ font  columns
 // PAT token "CRPS gui  auto-update development "
 // will expire Thu, nov 18, 2021
 // set GH_TOKEN =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
-//
+//                "provider": "github",
+//                "owner": "RPC-MaxVision",
+//                "repo": "CRPS-gui",
+//                "token": "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"
 
-
-
+// PAT token for personal github
+// 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
+//                "provider": "github",
+//                "owner": "DarylBerryhill",
+//                "repo": "CRPS-gui",
+//                "token": "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"
 
 const requiredFirmware = "04.01.00.569";
 

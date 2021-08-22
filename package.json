@@ -55,9 +55,9 @@
         "publish": [
             {
                 "provider": "github",
-                "owner": "RPC-MaxVision",
+                "owner": "DarylBerryhill",
                 "repo": "CRPS-gui",
-                "token": "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"
+                "token": "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"
             }
         ]
     },
