@@ -1,0 +1,54 @@
+<div id="log" style="visibility: hidden;">
+    <style>
+        #outputLog
+        {
+            font-style: normal;
+            font-variant-ligatures: normal;
+            font-variant-caps: normal;
+            font-variant-numeric: normal;
+            font-variant-east-asian: normal;
+            font-weight: bolder;
+            font-stretch: normal;
+            font-size: 1.3em;
+            font-family: monospace;
+
+            text-shadow: 0em 0em 0em rgba(66,66,66,.100);
+            color: #000000;
+            background-color: darkgray;
+
+            text-align:justify;
+            line-height: normal;
+            overflow-y: auto;
+
+            max-height: 100%;
+            height: 60vh;
+            width: 37.5em;
+            padding: 0.4em 0em 0.4em 0em;
+            margin: 0em;
+
+            border-width: 0.2em;
+            border-color: #e0d5d5;
+            border-style: solid;
+            border-radius: 1em;
+            box-shadow: 0em 0.1em 0.5em rgba(66,66,66,.64);
+        }
+
+        .command
+        {
+            margin-top: 0.2em;
+            margin-bottom: 0.2em;
+            vertical-align: baseline;
+            width: 17em;
+        }
+
+    </style>
+
+
+    <button onclick="document.getElementById('outputLog').value  = ''; ">Clear log</button>
+    <button   id="save_log" >Save log</button><br>
+    <input    id="command" type="text"  class="command"
+              placeholder="Enter custom command"  />
+    <button id="sendCommand" class=""
+            onclick="sendCommand('command')"> Send </button><br>
+    <textarea id="outputLog"></textarea>
+</div>

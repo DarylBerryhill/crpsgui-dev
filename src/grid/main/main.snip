@@ -1,0 +1,256 @@
+<div>
+    <style>
+
+        .frontPanel
+        {
+            height: 17em;
+            padding: 0.5em;
+            border: 0.4em solid #e0d5d5;
+            border-radius: 1.0em;
+            box-shadow: 0em 0.1em 0.7em rgba(66,66,66,.64);
+            margin-bottom: 0.7em;
+        }
+
+
+        .controllers
+        {
+            margin: 0em;
+            border: 0.4em solid #e0d5d5;
+            border-radius: 1.0em;
+            box-shadow:  0em 0.1em 0.7em rgba(66,66,66,.64);
+/*            height: 53em;*/
+        }
+
+
+        .systemIoDiv
+        {
+            border: 0.1em solid black;
+            float: left;
+            margin-right: 0.5em;
+            padding: 0.5em;
+            line-height: 2.0em;
+        }
+
+        .systemStateDiv
+        {
+            border: 0.1em solid black;
+            float: left;
+            overflow: hidden;
+            margin-right: 0.5em;
+            padding: 0.5em;
+            line-height: 3.8em;
+        }
+
+        .diagVerboseDiv
+        {
+            float: left;
+            border: 0.1em solid black;
+            padding: 0.5em;
+            line-height: 2.0em;
+        }
+
+        .modeState
+        {
+            padding: 1.2em 0.6em 0.6em 0.6em;
+            font-size: 2.0em;
+            display: inline-block;
+            width: 7em;
+        }
+
+        .utilities
+        {
+            float: right;
+            line-height: 3.0em;
+        }
+
+        .panyeTitle { text-align: center; padding-bottom: 0.5em; }
+
+
+
+
+
+        /* ============= EEPROM Utility Modal window pop-up ================= */
+        /* The Modal (background) */
+        .modal
+        {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 8em; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content
+        {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 0.1em solid #888;
+            width: 163em;
+            height: 66em;
+            border: 0.4em solid #e0d5d5;
+            border-radius: 1.2em;
+            box-shadow: 0 0.5em 0.8em 0 rgba(0,0,0,0.2),
+                        0 0.8em 3.0em 0 rgba(0,0,0,0.19);
+            animation-name: animatetop;
+            animation-duration: 0.6s
+        }
+
+        /* Add Animation */
+        @keyframes animatetop
+        {
+          from {top:-500px; opacity: 0;  }
+          to   {top: 0em;   opacity: 1;  }
+        }
+
+        .modal-header
+        {
+            padding-left:   1.2em;
+            padding-right:  1.2em;
+            padding-top:    1.2em;
+            padding-bottom: 1.2em;
+            background-color: #5cb85c;
+            color: white;
+            cursor: move;
+            z-index: 10;
+        }
+
+        .modal-body
+        {
+            padding: 0.8em 1.2em;
+        }
+
+        .modal-footer
+        {
+          padding: 0.1em 1.3em;
+          background-color: #5cb85c;
+          color: white;
+        }
+
+        /* =========== set charger voltage Modal window pop-up ============== */
+        /*  AKA. Charger Utility */
+        .modal-charger
+        {
+          display: none;                     /* Hidden by default */
+          position: fixed;                   /* Stay in place */
+          z-index: 1;                        /* Sit on top */
+          padding-top: 1em;                  /* Location of the box */
+          left: 0;
+          top:  0;
+          width: 100%;                       /* Full width */
+          height: 100%;                      /* Full height */
+          overflow: auto;                    /* Enable scroll if needed */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content-charger
+        {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            width: 163em;
+            border: 0.4em solid #e0d5d5;
+            border-radius: 1.2em;
+            box-shadow: 0 0.5em 0.8em 0 rgba(0,0,0,0.2),
+                        0 0.8em 3em 0 rgba(0,0,0,0.19);
+            animation-name: animatetop;
+            animation-duration: 0.6s
+        }
+
+        /* Add Animation */
+        @keyframes animatetop
+        {
+          from {top:-500px; opacity:0;  }
+          to {top:0; opacity:1;  }
+        }
+
+        .modal-header-charger
+        {
+            padding: 1.0em;
+            background-color: #5cb85c;
+            color: white;
+            z-index: 10;
+        }
+
+        .modal-body-charger
+        {
+        }
+
+        .modal-footer-charger
+        {
+          padding: 0.1em 1.3em;
+          background-color: #5cb85c;
+          color: white;
+        }
+
+
+    </style>
+
+    <div id="controlPanel" style="visibility: hidden;">
+        <div include-html="main/control"
+             include-js  =""
+             class       ="frontPanel"></div>
+
+        <div include-html="main/controllers"
+             include-js  =""
+             class       ="controllers"></div>
+    </div>
+
+    <!-- EEPROM Utility Modal window  -->
+    <div id="eeprom_win" class="modal">
+                <!-- Modal window -->
+                <div class="modal-content">
+                    <!-- Modal header -->
+                    <div id="eeprom_winheader" class="modal-header">
+                      <span class="close">&times;</span>
+                      <h1   class="panyeTitle">EEPROM Utilities</h1> <br>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div include-html="main/eeprom"
+                         class="modal-body"></div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <h3> -- </h3>
+                    </div>
+                </div>
+    </div>
+
+    <!-- set charger voltage Modal window  -->
+    <div id="set_voltageWin" class="modal-charger">
+                <!-- Modal window -->
+                <div class="modal-content-charger">
+                    <!-- Modal header -->
+                    <div class="modal-header-charger">
+                      <span class="close">&times;</span>
+                      <h1 class="panyeTitle">Charger Utilities</h1> <br>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div include-html="main/setChargeVoltage"
+                         class="modal-body-charger"></div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer-charger">
+                      <h3> -- </h3>
+                    </div>
+                </div>
+    </div>
+
+    <!--  Flash Programming   -->
+    <div include-html="main/bootloadUtility"></div>
+    
+    <!--  Auto-update Notification   -->
+    <div include-html="main/updateNotify"></div>
+    
+
+</div>

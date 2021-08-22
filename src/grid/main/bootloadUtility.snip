@@ -1,0 +1,158 @@
+
+<div id="flashProg" class="bl_win">
+<style>
+        .bootloadProgress
+        {
+            position: absolute;
+            top: 26em;
+            left: 3em;
+            width: 46em;
+            height: 2em;
+            display: block;
+            appearance: none;
+            border: none;
+            visibility: hidden;
+        }
+
+        .bootloadProgress::-webkit-progress-bar
+        {
+             background: black;
+             border-radius: 10em;
+             padding: 0.3em;
+             box-shadow: 0em 0em.2em 0em 0em rgba(255, 255, 255, 0.2);
+        }
+
+
+        .bootloadProgress::-webkit-progress-value
+        {
+           border-radius: 10em;
+           box-shadow: inset 0em 0.1em 0.1em 0em rgba(255, 255, 255, 0.4);
+           background:
+           -webkit-linear-gradient(45deg, transparent, transparent 33%,
+                                   rgba(0, 0, 0, 0.1) 33%,
+                                   rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+           -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
+           -webkit-linear-gradient(left, red, #ba7448);
+
+           background-size: 2.2em 11.2em, 100% 100%, 100% 100%;
+           animation: move 5s linear 0 infinite;
+        }
+
+        @keyframes move
+        {
+            0%   {background-position: 0em 0em, 0 0, 0 0}
+            100% {background-position: 8em 0em, 0 0, 0 0}
+        }
+
+        #bootloadProgressLabel
+        {
+            position: absolute;
+            top: 13em;
+            left: 8em;
+            color: white;
+            font-size: 2em;
+            width: 10em;
+        }
+
+        .bl_win
+        {
+            visibility:hidden;
+            width: 50em; height: 28em;
+            border: 0.1em black solid;
+            border-radius: 1em;
+            box-shadow: 1px 1px 10px #999;
+            text-align:center;
+            position: absolute;
+            top: 37em;
+            margin:0 30%;
+            padding: 1em;
+            background-color: antiquewhite;
+        }
+
+        .bl_title
+        {
+            color: blue;
+        }
+
+        .bl_prog_btn
+        {
+            font-size: 1.2em;
+            color: red;
+            font-weight: 900;
+
+            cursor: pointer;
+            border: 0.1em black solid;
+            padding: 0.2em;
+            display: inline-block;
+        }
+
+        .bl_user_prog_btn
+        {
+            font-size: 1.2em;
+            color: red;
+            font-weight: 900;
+            cursor: pointer;
+            position: relative;
+            top: -1.3em;
+            left: 6em;
+            border: 0.1em black solid;
+            padding: 0.2em;
+            display: inline-block;
+        }
+
+        .bl_abort
+        {
+            color: red;
+            font-size: 3.0em;
+            position: relative;
+            top: -8.5em;
+            left: 15.5em;
+            border-radius: 50%;
+            border: 0.1em black solid;
+            width: 1.0em;
+            padding: 0.1em;
+            cursor: pointer
+        }
+
+    </style>
+
+        <h1 class="bl_title">Bootloader Mode Detected</h1>
+        <br>
+
+        <h1>
+            <a title="Programs current firmware"
+               onclick="programFirmware();">
+                <span class="bl_prog_btn">Program</span>
+            </a>
+            current firmware <span>build 569 </span>
+        </h1>
+        <br>
+
+        <h1>or</h1>
+        <br>
+        <br>
+
+        <label>
+            <h1>Browse for a different firmware version</h1>
+            <br>
+            <input type="file" id="hexfile" name="hexfile" value="hexfile"
+                   onchange="console.log(this.files[0].path); "/>
+        </label>
+
+        <h1>
+            <a title="Programs current firmware"
+               onclick="programFirmware();">
+                <span class="bl_user_prog_btn">Program</span>
+            </a>
+        </h1>
+
+        <progress id="bootloadFile" class="bootloadProgress" value="0" max="100">
+        </progress>
+
+        <div id="bootloadProgressLabel"></div>
+
+        <div class="bl_abort"
+             onclick="abortBootload();">
+            <span title="Abort bootloader. Go back to firmware mode">X</span>
+        </div>
+</div>

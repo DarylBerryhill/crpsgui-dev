@@ -1,0 +1,118 @@
+<div>
+    <style>
+        .logo
+        {
+            margin: 0.2em 0 0.2em 0.2em;
+            color: white;
+            width: 7em;
+        }
+
+        #systemStatusCTRL
+        {
+            visibility: hidden;
+            float: left;
+            margin-left: 2.0em;
+            line-height: 2.5em;
+        }
+
+        .autoUpdateBtn
+        {
+            float: left;
+            margin-right: 12em;
+        }
+
+        #reset
+        {
+            color: white;
+            background-color: crimson;
+        }
+        #resetStatus
+        {
+            color: white;
+            font-size: 1.6em;
+        }
+
+        #portMessage
+        {
+            width: 35em;
+            padding: 0.4em;
+        }
+
+        .portList
+        {
+            height: 1.5em;
+            width: 13em;
+            position: relative;
+            top: 0.3em;
+            margin-left: 0.4em;
+            margin-right: 0.4em;
+        }
+
+        .revision
+        {
+            font-size: 1.5em;
+            font-weight: bolder;
+            float: right;
+            width: 19em;
+            margin-right: 10em;
+        }
+
+        #outdated
+        {
+            color:bisque;
+            padding: 0.4em;
+            display: inline-block;
+        }
+    </style>
+
+
+    <h1 class="logo"> CRPS GUI  </h1>
+
+    <div style="float: left;">
+        <button id ="scanPorts">Scan Ports</button>
+        <select id="portSelectList" class="portList"  ></select>
+        <button id ="openClose"     class="notvisible">Open Port</button>
+        <span   id="connectMessage"
+                style="font-size: 1.5em;"
+                class="bold">not connected</span>
+    </div>
+
+    <div id="systemStatusCTRL">
+        <div class="autoUpdateBtn">
+            <button id="Refresh">Refresh</button><br>
+            <label     for="autoUpdate">
+                <input id="autoUpdate" type="checkbox">
+                <span style="font-size: 3em;">auto</span>
+            </label>
+        </div>
+        <div style="float: left; ">
+            <button id ="reset"  >Reset</button><br>
+            <span   id = "resetStatus">System reset</span>
+        </div>
+    </div>
+
+    <div style="float: left; margin-left: 3em;">
+        <button style="color: black; background-color: deepskyblue;"
+                onclick="ipcRenderer.send('restart-app');">Relaunch</button>
+    </div>
+
+    <div>
+        <button onclick="ipcRenderer.send('update_check');">
+            Update App
+        </button>
+    </div>
+
+    <div class="revision">
+        MCU:                 <span id ="processor"  class="bold"></span><br>
+        Firmware revision:   <span id ="firmware"   class="bold"></span><br>
+        Bootloader revision: <span id ="bootloader" class="bold"></span><br>
+        <span id="outdated"></span>
+    </div>
+
+
+
+    <div id="portMessage"
+         style="clear: left;font-size: 1.5em; position: relative; top: -1.7em;"
+         class="bold">Scanning ports ...
+    </div>
+</div>

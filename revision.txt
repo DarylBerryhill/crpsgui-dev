@@ -1,0 +1,379 @@
+#####################################################################################
+                               Revision history
+#####################################################################################
+
+
+================================================================================
+                        CRPS GUI Ver 1.12 update
+================================================================================
+GitHub
+https://github.com/RPC-MaxVision/CRPS-gui/raw/main/release/crpsgui.exe
+
+    requires:
+       CRPS GUI Ver 1.12 requires firmware build 569
+       https://github.com/RPC-MaxVision/CRPS/raw/main/CRPS41-bootloader-167-production-569.zip
+
+    Performance
+
+    Refactor
+       restructured several functions for better maintainability
+
+    Fixed
+
+
+    Added
+       automated app versioning during build process
+
+
+
+    ToDo
+       *) detect outdated firmware and ask to update. include small update button
+
+       *) Allow gui to control the bootloader 'safe' commands
+
+        *) add app info to display dependency versions and memory usage
+           have button to show up-to-date memory usage
+
+dont send anything unless gui owns the port and in correct mode [firmware, bootloader]
+add timeouts for
+     bootload program failure, no file written
+     timeout expries. .. can not talk to port
+
+     *) get charger ramp voltage working
+        save user scripts to JSON file
+        load user scripts from JSON file
+
+     *) edit firmware to accept charge ramp voltage commands
+
+     *)  added eeprom user error detection
+         fields can only accept [0-9, a-F, A-F]
+         on blur, only the first 2 charactors are accepted
+
+     *) in bootloader mode,
+             show MCU signature, block size
+             bootloader version
+             firmware zize
+             bootloader size
+             ram size
+
+
+
+================================================================================
+                        CRPS GUI Ver 1.11 update
+================================================================================
+GitHub
+https://github.com/RPC-MaxVision/CRPS-gui/raw/main/release/crpsgui.exe
+
+    requires:
+       CRPS GUI Ver 1.11 requires firmware build 569
+       https://github.com/RPC-MaxVision/CRPS/raw/main/CRPS41-bootloader-167-production-569.zip
+
+    Performance
+
+    Refactor
+       restructured several functions for better maintainability
+
+    Fixed
+        Front panel I/O radio check boxes to be more clearer
+
+        Problem not programming firmware only on initial launch.
+
+    Added
+        Add relaunch button to gui
+
+        add System State to detect Power-up from battery and invalid power-up
+        these would probably never be seen but included to be complete
+
+
+
+    ToDo
+       *) detect outdated firmware and ask to update. include small update button
+
+       *) look for a way to automate app versioning
+
+       *) Allow gui to control the bootloader 'safe' commands
+
+dont send anything unless gui owns the port and in correct mode [firmware, bootloader]
+add timeouts for
+     bootload program failure, no file written
+     timeout expries. .. can not talk to port
+
+     *) get charger ramp voltage working
+        save user scripts to JSON file
+        load user scripts from JSON file
+
+     *) edit firmware to accept charge ramp voltage commands
+
+     *)  added eeprom user error detection
+         fields can only accept [0-9, a-F, A-F]
+         on blur, only the first 2 charactors are accepted
+
+     *) in bootloader mode,
+             show MCU signature, block size
+             bootloader version
+             firmware zize
+             bootloader size
+             ram size
+
+
+================================================================================
+                        CRPS GUI Ver 1.10
+================================================================================
+GitHub
+https://github.com/RPC-MaxVision/CRPS-gui/raw/main/release/crpsgui.exe
+
+    requires:
+       CRPS GUI Ver 1.10 requires firmware build 569
+       https://github.com/RPC-MaxVision/CRPS/raw/main/CRPS41-bootloader-167-production-569.zip
+
+    Performance
+
+    Refactor
+       restructured several functions for better maintainability
+
+    Fixed
+        bootload button to to not gives errors when programming firmware
+        mouse over effect for bootload buttons
+
+    Added
+       an 'abort' button (big red 'X') to abort from bootloader mode and relaunch gui
+       an icon to install EXE file
+
+
+
+
+
+
+    ToDo
+  Add relaunch button to gui
+
+dont send anything unless gui owns the port and in correct mode [firmware, bootloader]
+add timeouts for
+     bootload program failure, no file written
+     timeout expries. .. can not talk to port
+
+
+     *) get charger ramp voltage working
+        save user scripts to JSON file
+        load user scripts from JSON file
+
+     *) edit firmware to accept charge ramp voltage commands
+
+     *)  added eeprom user error detection
+         fields can only accept [0-9, a-F, A-F]
+         on blur, only the first 2 charactors are accepted
+
+     *) in bootloader mode,
+             show MCU signature, block size
+             bootloader version
+             firmware zize
+             bootloader size
+             ram size
+
+
+================================================================================
+                        CRPS GUI Ver 1.9
+================================================================================
+Github
+https://github.com/RPC-MaxVision/CRPS/raw/main/CRPS41-bootloader-167-production-569.zip
+
+    requires:
+       CRPS GUI Ver 1.9 requires firmware build 569
+
+    Performance
+
+    Refactor
+    restructured several functions for better maintainability
+
+    added
+        auto detect Bootload mode
+        program with latest firmware
+        option for user to browse to firmware
+        auto detect when programming has finished
+        remembers last COM port and auto connects
+
+
+
+    ToDo
+     *) get charger ramp voltage working
+        save user scripts to JSON file
+        load user scripts from JSON file
+
+     *) edit firmware to accept charge ramp voltage commands
+
+     *)  added eeprom user error detection
+         fields can only accept [0-9, a-F, A-F]
+         on blur, only the first 2 charactors are accepted
+
+     *) in bootloader mode,
+             show MCU signature, block size
+             bootloader version
+             firmware zize
+             bootloader size
+             ram size
+
+
+================================================================================
+                        CRPS GUI Ver 1.8
+================================================================================
+CRPS Development build 569
+Github
+https://github.com/RPC-MaxVision/CRPS/raw/main/CRPS41-bootloader-167-production-569.zip
+
+
+    requires:
+       CRPS GUI Ver 1.8 requires firmware build 569
+
+    Performance
+        *) completely automated the way the project is compiled, built and archived.
+           Doing it manually took about 10 minutes. now takes less than a minute.
+
+        *) refactored a structural problem in the way html modules are loaded.
+           The more code added to project the slower it loads. Occasionally it
+           will hang and not load. Completely rewrote the code that loads modules.
+           Now it loads in 46ms instead of 3.6 secs and smaller code.
+
+    added
+     *) Ability to control front panel leds, beeper and GPIO control.
+        now the buttons in "system state" do their intended purpose.
+
+     *)  A new firmware command.
+            set gpio "port" <bit> <state>
+               where:
+               port is a single character representing port name
+                   'a','b','c','d','e','f','h','j','k','r','q'
+               bit is the I/O bit
+                   7, 6, 5, 4, 3, 2, 1, 0
+               state is the Boolean value for the I/O bit
+                   1, 0
+            Example: sets PORTD bit 5 to true, turns on FP green led
+               set gpio d 5 1
+
+
+
+
+================================================================================
+                        CRPS GUI Ver 1.7
+================================================================================
+Github
+https://github.com/RPC-MaxVision/CRPS/raw/main/CRPS41-bootloader-167-production-566.zip
+
+    requires:
+       CRPS firmware build 566
+
+        added Decoded charger status bits 7-6-5 ( PG, OTP, OTW)
+
+        added eeprom erase all
+
+        changed firmware to boot into debug/chatty mode when eeprom is empty
+
+
+
+
+
+================================================================================
+                        CRPS GUI Ver 1.6
+================================================================================
+Github
+https://github.com/RPC-MaxVision/CRPS/raw/main/CRPS41-bootloader-167-production-565.zip
+
+     requires:
+       CRPS firmware build 565
+
+    feature:
+
+       added send manual command to gui
+
+       added charger status bit 4 (CV / CC)
+             add indicator on main charger panel
+
+       added  new firmware command to set voltage
+          set voltage <ctrl> a|b <float voltage>
+
+       added to gui 'set voltage' to charger utilities
+
+       added  new firmware command to read all charger registers
+          get chargerreg <ctrl> a|b
+
+       added read charger registers to charger utilities
+
+
+
+
+================================================================================
+                        CRPS GUI Ver 1.5
+================================================================================
+    requires:
+       CRPS firmware build 559
+
+    feature:
+    added code to firmware
+       if (PSON.ChangesState()) { Charger.SetCurrent(); }
+       to make production mode set charger current based on system on/off
+
+
+================================================================================
+                        CRPS GUI Ver 1.4
+================================================================================
+    requires:
+       CRPS firmware build 558
+
+    feature:
+        added. auto refresh feature. updates every 1 second.
+        can't really have any faster update rate without getting out of
+        sync with the hardware
+
+        improved. timeout if hardware fails to respond within 6 seconds
+
+        added. bootloader mode /  CRPS firmware mode auto-detect.
+        requires firmware build 558
+
+        added.  two new buttons under 'Diagnostic mode'
+        'CRPS mode' and 'Bootload mode'. Clicking  on them puts the processor
+        in the respective mode.
+
+        added. outdated firmware detection.
+        it now reports the required firmware and build number.
+        It will still be compatible with older firmware but will be feature limited.
+
+        added auto detect of windows system font and the ability to auto scale.
+        Press CTRL and '+' or CTRL and '-' increases or decreases font scaleing.
+        Pressing CTRL and '0' restores normal scaling.
+        No longer need to adjust scaling using windows display settings.
+        It will remember the scale factor the next time app is opened.
+        within windows. Tested on windows 1920 resolution with display scaled to
+        100%, 150%, 175%. main gui and eeprom utility still look great.
+
+    fix:
+        fixed bug in CRPS gui header causing display not to format properly
+        for 'port error' and 'port message' sections
+
+        fixed display of bootloader revision and firmware revision titles not
+        displaying
+
+        fixed displaying of eeprom section when display is enlarged.
+
+
+
+
+================================================================================
+                        CRPS GUI Ver 1.3
+================================================================================
+    reqires:
+       CRPS firmware build 555
+
+    feature:
+        added reading eeprom, editing eeprom and saving entire eeprom.
+
+        added version number to GUI title bar
+
+        added in error detection and recovery should the MPS processor not
+        response for 6 seconds.
+
+    fix:
+        improved charger info section. voltage, status, expander data is
+        now easier to see.
+
+        improved gui loading response under the hood. each section and
+        sub sections are now modular. should be easier to maintain.
+

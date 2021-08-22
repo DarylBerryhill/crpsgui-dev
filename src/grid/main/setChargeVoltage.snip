@@ -1,0 +1,179 @@
+<div class="tab-container">
+
+    <style type="text/css">
+        .tab-container
+        {
+            width: 65%;
+            margin: 0.9em auto 0.9em auto;
+        }
+
+        .tabs
+        {
+            height: 2.8em;
+            line-height: 2.8em;
+            font-size: 2.5em;
+        }
+        .tab:hover
+        {
+            text-underline-position: under;
+            text-decoration-line: underline;
+            text-decoration-style:solid;
+            text-decoration-color: black;
+            border-left: 0.2em solid black;
+            border-right: 0.2em solid black;
+            background-color: cornsilk;
+        }
+
+        .tabs .tab
+        {
+            display: inline-block;
+            cursor: pointer;
+            width: 9em;
+            text-align: center;
+        }
+
+        .tabs .active
+        {
+            background-color: tomato;
+        }
+
+        .tab-panes .tab-pane
+        {
+            border:0.1em solid #333333;
+            padding:1.8em;
+            display: none
+        }
+        .tab-panes .active
+        {
+            display: block;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button
+        {
+            margin-left: 5px;
+            width: 40px;
+            height: 40px;
+        }
+
+
+        input.setVoltage
+        {
+            width: 4.0em;
+            padding: 0.2em;
+            border: 0.1em solid black;
+            z-index: 1;
+            display: inline-block;
+            margin: 0.70em 0em 0.70em 0em;
+            vertical-align: baseline;
+        }
+
+         input[type="radio"].setCtrl
+        {
+            width: 2.0em;
+            z-index: 1;
+            display: inline-block;
+        }
+
+
+        .voltageConfig
+        {
+            clear: left;
+            line-height:2vh;
+        }
+
+        .setVoltage
+        {
+            clear: left;
+        }
+
+        .rampVoltage
+        {
+            clear: left;
+        }
+
+        .showRegisters
+        {
+            clear: left;
+            padding-top: 13.0em;
+        }
+
+        .voltageTitle
+        {
+            text-align: center;
+            font-size: 3.5em;
+            margin-bottom: 1em;
+        }
+
+
+        .bigger
+        {
+            font-size: 3.0em;
+        }
+
+        .threshold
+        {
+            border: 0.1em black solid;
+            vertical-align: baseline;
+        }
+
+        .showreg
+        {
+            display: inline-block;
+            width: 12em;
+            padding: 0.2em;
+        }
+
+
+        .saveScript
+        {
+            clear: left;
+            line-height:2vh;
+            margin-top: 2.0em;
+        }
+
+
+        .chrSetBtn
+        {
+            margin: auto 85%;
+        }
+
+
+    </style>
+        <!--Charger utility tabs-->
+        <div class="tabs">
+            <a class="tab active">Voltage</a>
+            <a class="tab">Current</a>
+            <a class="tab">Calibrate</a>
+            <a class="tab">Scripts</a>
+        </div>
+
+        <!--charger functions for tabs-->
+        <div class="tab-panes">
+            <!--  Voltage tab-->
+            <div include-html="main/voltageTab" 
+                 class="voltageConfig tab-pane active"> </div>
+
+            <!--Current tab-->
+            <div class="tab-pane">
+                System ON current <br>
+                System OFF current <br>
+                Ramp current <br>
+                Save to EEPROM
+            </div>
+
+            <!--  calibrate tab-->
+            <div class="tab-pane" >
+                Calibrate controller #1 <br>
+                Calibrate controller #2 <br>
+                Calibrate controller #3 <br>
+                Calibrate controller #4 <br>
+                Save to EEPROM
+            </div>
+
+            <!--  scripts tab-->
+            <div class="tab-pane" >
+                scripts
+            </div>
+        </div>
+</div>

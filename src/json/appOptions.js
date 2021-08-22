@@ -1,0 +1,65 @@
+module.exports =
+{
+        width: 1600,
+        minWidth: 1200,
+        maxWidth: 2880,
+
+        height: 630,
+  //      minHeight: 560,
+//        maxHeight: 1080,
+
+        useContentSize: true,
+        center: true,
+        resizable: true,
+        movable: true,
+        minimizable: true,
+        maximizable: true,
+        closable: true,
+        focusable: true,
+        alwaysOnTop: false,
+        fullscreenable: true,
+        fullscreen: false,
+        simpleFullscreen: false,
+        skipTaskbar: false,
+        kiosk: false,
+        title: 'CRPS GUI ',
+//        icon: '../assets/RPC-MaxUPS-App.ico',
+        show: true,
+        paintWhenInitiallyHidden: false,
+        thickFrame: true,
+        frame: true,
+        transparent: false,
+
+        roundedCorners: true,
+        backgroundColor: '#2e2c29',
+        darkTheme: false,
+        hasShadow: true,
+        opacity: 1.0,
+        parent: 'top',
+        modal: true,
+        acceptFirstMouse: false,
+        disableAutoHideCursor: false,
+        autoHideMenuBar: true,
+
+        webPreferences:
+        {
+            devTools: true,
+            nativeWindowOpen: true,
+            nodeIntegration: true,
+            nodeIntegrationInWorker: true,
+            nodeIntegrationInSubFrames: true,
+            enableRemoteModule: true,
+            javascript: true,
+            textAreasAreResizable: true,
+            webgl: true,
+            plugins: true,
+            experimentalFeatures: false,
+            backgroundThrottling: false,
+            contextIsolation: false,
+            offscreen: false,
+            spellcheck: false,
+            enableWebSQL: false,
+        //    preload: path.join(__dirname, 'preload.js')
+        }
+    };
+

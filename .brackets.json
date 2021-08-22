@@ -1,0 +1,29 @@
+{
+    "dimitrk.exclude-indexing-filetree.excludeList":
+    [
+        ".git(?!ignore)",
+        "dist",
+        "bower_components",
+        "node_modules",
+        "e2e",
+        ".vscode",
+        "Release",
+        "Debug",
+        ".bak",
+        ".vproj",
+        ".docx",
+        ".jpg",
+        ".xml",
+        ".cwx",
+        ".atsln",
+        ".cfg",
+        ".cof",
+        ".csv",
+        ".xlsx",
+        ".cproj",
+        ".hci",
+        ".cci",
+        ".cbi",
+        ".fct"
+    ]
+}

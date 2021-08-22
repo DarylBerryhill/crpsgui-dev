@@ -1,0 +1,99 @@
+
+<div class="systemIoDiv"  >
+    <h1 class="panyeTitle">Front panel I/O</h1><br>
+
+    <label class="fpio2 fpio2-gradient" for="dcgood">
+        <span class="fpio2__input">
+            <input type="radio" -name="radio" id="dcgood" disabled />
+            <span class="fpio2__control"></span>
+        </span>
+        <span class="fpio2__label">DC Good</span>
+    </label>
+    <br>
+
+    <label class="fpio2 fpio2-gradient" for="PSON">
+        <span class="fpio2__input">
+            <input type="radio" -name="radio" id="PSON" disabled />
+            <span class="fpio2__control"></span>
+        </span>
+        <span class="fpio2__label"
+              style="border-top: 0.5em solid black;
+                     width: 5.1em;">PSON</span>
+    </label>
+    <br>
+
+    <label class="fpio2 fpio2-gradient" for="12ven">
+        <span class="fpio2__input">
+            <input type="radio" -name="radio" id="12ven" disabled />
+            <span class="fpio2__control"></span>
+        </span>
+        <span class="fpio2__label"
+              style="border-top: 0.5em solid black;
+                     width: 5.1em;">12V Enable</span>
+    </label>
+    <br>
+
+
+</div>
+
+<div class="systemStateDiv" >
+    <h1 class="panyeTitle">System State</h1>
+        <span style="font-size: 2.0em;">Operating Mode: </span>
+        <span id="operatingMode" style="font-size: 2.0em;" class="bold"></span><br>
+
+        <span style="font-size: 2.0em;">Mode: </span>
+        <span id="systemState" style="font-size: 2.0em;" class="bold"></span><br>
+
+        <button id="fp_green"
+                onclick="fpio.green(this);"  state="0";>Green led</button>
+        <button id="fp_red"
+                onclick="fpio.red(this);"    state="0";>Red led</button>
+        <button id="fp_beeper"
+                onclick="fpio.beeper(this);" state="0";>Beeper</button>
+</div>
+
+<div class="diagVerboseDiv" >
+    <h1 class="panyeTitle">Diagnostic Mode</h1>
+    <div id="bootloadCtrl" >
+        <label for="Firmware" class="radio">
+            <input type="radio" id="Firmware" name="Bootloader" />
+            <span  class="modeState">CRPS mode</span>
+        </label>
+
+        <label for="Bootload" class="radio">
+            <input type="radio" id="Bootload" name="Bootloader"
+                   onclick="enterBootload();"/>
+
+            <span  class="modeState">Bootload Mode</span>
+        </label>
+    </div>
+    <div id="firmwareCtrl">
+        <label for="debug" class="radio">
+            <input type="radio" id="debug" name="diagMode"/>
+            <span  class="modeState">Debug</span>
+        </label>
+
+        <label for="Production" class="radio">
+            <input type="radio" id="production" name="diagMode"/>
+            <span  class="modeState">Production</span>
+        </label>
+        <br>
+
+        <label for="chatty" class="radio">
+            <input type="radio" id="chatty" name="verbose"/>
+            <span  class="modeState">chatty</span>
+        </label>
+
+        <label for="silent" class="radio">
+            <input type="radio" id="silent" name="verbose"/>
+            <span  class="modeState">silent</span>
+        </label>
+    </div>
+
+</div>
+
+<div class="utilities">
+    <button id="eeprom_util">EEPROM utilities</button><br>
+    <button id="set_voltage">Charger utilities</button><br>
+    <button id="run_script">Run Script</button>
+</div>

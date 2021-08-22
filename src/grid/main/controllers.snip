@@ -1,0 +1,414 @@
+<div>
+    <style>
+        #controller1,
+        #controller2,
+        #controller3,
+        #controller4
+        {
+            float: left;
+            width: 65em;
+            border: 0.2em solid  #e0d5d5;
+            border-radius: 1em;
+            box-shadow: 0em 0.1em 0.7em rgba(66,66,66,.64);
+            margin:  0em 2.0em 2.0em 1.2em;
+            padding: 0.7em 0em 1.0em 0.5em;
+            background-color: lightslategrey;
+            overflow: hidden;
+        }
+
+        .h1Float
+        {
+            float: left;
+            font-size: 2.2em;
+            margin: 0em 1.0em 0.5em 0.7em;
+            border: 0.1em solid #e0d5d5;
+            border-radius: 1.0em;
+            padding: 0.2em 0.6em 0.2em 0.4em;
+            background-color:cadetblue
+        }
+        .batteryPresent
+        {
+            font-size: 2.0em;
+            color:bisque;
+        }
+
+        .chargerA
+        {
+            font-size: 2.2em;
+        }
+        .chargerB
+        {
+            font-size: 2.2em;
+            margin-top: 1em;
+        }
+
+        .space1
+        {
+            display: inline;
+            position: relative;
+            left: 21px;
+        }
+
+        .space2
+        {
+            display: inline;
+            position: relative;
+            left: 25px;
+        }
+
+        .space3
+        {
+            display: inline;
+            position: relative;
+            left: 14px;
+        }
+
+        .center-column-header
+        {
+            display: inline-block;
+            font-weight: bolder;
+            font-size: 2.2em;
+        }
+ 
+        .orange2
+        {
+         background-color: coral;
+         color: white;
+        }
+        .yellow2
+        {
+         background-color: yellow;
+         color: black;
+        }
+        .lightgreen
+        {
+            background-color: lightgreen;
+        }
+        .lightcoral
+        {
+            background-color: lightcoral;
+        }
+        .cccv_status
+        {
+          display: inline-block;
+          padding: 0.3em;
+          font-size: 0.7em;
+          border: 0.1em black solid;
+          border-radius: 50%;
+          font-weight: bolder;
+        }
+
+        .bitfields
+        {
+            display: inline-block;
+            margin: 0;
+            padding: 0.2em;
+            border: 0.1em black solid;
+            border-radius: 50%;
+            font-size: 0.7em;
+        }
+
+
+
+    </style>
+
+    <h1 class="panyeTitle">Controllers and Chargers</h1>
+    <!--  CONTROLLER #1  -->
+    <div id="controller1" class="hide">
+        <div class="h1Float">
+            Controller
+            <span class="bold">#1</span> addr:
+            <span class="bold">0x18</span>
+            <span> Status: </span>
+            <span id="c1Status" class="bold"></span>
+        </div>
+        <div id="c1Battery"
+             class="batteryPresent"
+             style="float: left; font-size: 2.2em; padding-top: 0.5em;"></div>
+        <div style="clear: left;">
+            <button id="CTRL1Green"
+                    address="0x18"
+                    regOnData="+0x80"
+                    regOffData="-0x80"
+                    btnColor="green">GREEN led</button>
+            <button id="CTRL1Red"
+                    address="0x18"
+                    regOnData="+0x40"
+                    regOffData="-0x40"
+                    btnColor="red">Red led</button>
+            <button id="CTRL1MChargeEn"
+                    address="0x18"
+                    regOnData="+0x08"
+                    regOffData="-0x08"
+                    btnColor="indigo">Master Charge Enable</button>
+        </div>
+        <div class="center-column-header">
+            <span> </span>
+            <span>Threshold</span>
+            <span style="left: 13em;">Status</span>
+        </div>
+        <div class="chargerA">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>A</b>
+            <span id="c1AId"     class="bold"> </span>
+            <span id="c1AVth"    class="space1 "> Voltage </span>
+            <span id="c1AIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c1a_pg"  class="bitfields" >PG</span>
+            <span id="c1a_otp" class="bitfields" >OTP</span>
+            <span id="c1a_otw" class="bitfields" >OTW</span>
+            <span id="c1a_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c1avolt"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="bold"></span>
+            <span id="c1acurrent" class="bold"></span>
+            <span id="c1AStatus" class="space3 bold"> </span>
+        </div>
+        <div class="chargerB">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>B</b>
+            <span id="c1BId"     class="bold"> </span>
+            <span id="c1BVth"    class="space1"> Voltage </span>
+            <span id="c1BIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c1b_pg"  class="bitfields" >PG</span>
+            <span id="c1b_otp" class="bitfields" >OTP</span>
+            <span id="c1b_otw" class="bitfields" >OTW</span>
+            <span id="c1b_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c1bvolt"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="bold"></span>
+            <span id="c1bcurrent" class="bold"></span>
+            <span id="c1BStatus" class="space3 bold"> </span>
+        </div>
+    </div>
+
+    <!--  CONTROLLER #2  -->
+    <div id="controller2" class="hide">
+        <div class="h1Float">
+            Controller
+            <span class="bold">#2</span> addr:
+            <span class="bold">0x19</span>
+            <span style="left: 13em;"> Status: </span>
+            <span id="c2Status" class="bold"></span>
+        </div>
+        <div id="c2Battery"
+             class="batteryPresent"
+             style="float: left; font-size: 2.2em; padding-top: 0.5em;"></div>
+        <div style="clear: left;">
+            <button id="CTRL2Green"
+                    address="0x19"
+                    regOnData="+0x80"
+                    regOffData="-0x80"
+                    btnColor="green">GREEN led</button>
+            <button id="CTRL2Red"
+                    address="0x19"
+                    regOnData="+0x40"
+                    regOffData="-0x40"
+                    btnColor="red">RED led</button>
+            <button id="CTRL2MChargeEn"
+                    address="0x19"
+                    regOnData="+0x08"
+                    regOffData="-0x08"
+                    btnColor="indigo">Master Charge Enable</button>
+        </div>
+        <div class="center-column-header">
+            <span> </span>
+            <span>Threshold</span>
+            <span style="left: 13em;">Status</span>
+        </div>
+        <div class="chargerA">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>A</b>
+            <span id="c2AId"     class="bold"></span>
+            <span id="c2AVth"    class="space1 "> Voltage </span>
+            <span id="c2AIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c2a_pg"  class="bitfields" >PG</span>
+            <span id="c2a_otp" class="bitfields" >OTP</span>
+            <span id="c2a_otw" class="bitfields" >OTW</span>
+            <span id="c2a_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c2avolt" class="bold"
+                  style="display: inline-block; margin-right: 0.7em;"></span>
+            <span id="c2acurrent" class="bold"></span>
+            <span id="c2AStatus" class="space3 bold"> </span>
+        </div>
+        <div class="chargerB">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>B</b>
+            <span id="c2BId"     class="bold"></span>
+            <span id="c2BVth"    class="space1"> Voltage </span>
+            <span id="c2BIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c2b_pg"  class="bitfields" >PG</span>
+            <span id="c2b_otp" class="bitfields" >OTP</span>
+            <span id="c2b_otw" class="bitfields" >OTW</span>
+            <span id="c2b_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c2bvolt" class="bold"
+                  style="display: inline-block; margin-right: 0.7em;"></span>
+            <span id="c2bcurrent" class="bold"></span>
+            <span id="c2BStatus" class="space3 bold"> </span>
+        </div>
+    </div>
+
+    <!--  CONTROLLER #3  -->
+    <div id="controller3" class="hide" style="clear: left;">
+        <div class="h1Float">
+                            Controller
+            <span class="bold">#3</span> addr:
+            <span class="bold">0x1A</span>
+            <span> Status: </span>
+            <span id="c3Status" class="bold"></span>
+        </div>
+        <div id="c3Battery"
+             class="batteryPresent"
+             style="float: left; font-size: 2.2em; padding-top: 0.5em;"></div>
+        <div style="clear: left;">
+            <button id="CTRL3Green"
+                    address="0x1A"
+                    regOnData="+0x80"
+                    regOffData="-0x80"
+                    btnColor="green">GREEN led</button>
+            <button id="CTRL3Red"
+                    address="0x1A"
+                    regOnData="+0x40"
+                    regOffData="-0x40"
+                    btnColor="red">RED led</button>
+            <button id="CTRL3MChargeEn"
+                    address="0x1A"
+                    regOnData="+0x08"
+                    regOffData="-0x08"
+                    btnColor="indigo">Master Charge Enable</button>
+        </div>
+        <div class="center-column-header">
+            <span> </span>
+            <span>Threshold</span>
+            <span style="left: 13em;">Status</span>
+        </div>
+        <div class="chargerA">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>A</b>
+            <span id="c3AId"     class="bold"></span>
+            <span id="c3AVth"    class="space1 "> Voltage </span>
+            <span id="c3AIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c3a_pg"  class="bitfields" >PG</span>
+            <span id="c3a_otp" class="bitfields" >OTP</span>
+            <span id="c3a_otw" class="bitfields" >OTW</span>
+            <span id="c3a_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c3avolt"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="bold"></span>
+            <span id="c3acurrent" class="bold"></span>
+            <span id="c3AStatus" class="space3 bold"> </span>
+        </div>
+        <div class="chargerB">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>B</b>
+            <span id="c3BId"     class="bold"></span>
+            <span id="c3BVth"    class="space1"> Voltage </span>
+            <span id="c3BIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c3b_pg"  class="bitfields" >PG</span>
+            <span id="c3b_otp" class="bitfields" >OTP</span>
+            <span id="c3b_otw" class="bitfields" >OTW</span>
+            <span id="c3b_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c3bvolt"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="bold"></span>
+            <span id="c3bcurrent" class="bold"></span>
+            <span id="c3BStatus" class="space3 bold"> </span>
+        </div>
+    </div>
+
+    <!--  CONTROLLER #4  -->
+    <div id="controller4" class="hide">
+        <div class="h1Float">
+            Controller
+            <span class="bold">#4</span> addr:
+            <span class="bold">0x1B</span>
+            <span> Status: </span>
+            <span id="c4Status" class="bold"></span>
+        </div>
+        <div id="c4Battery"
+             class="batteryPresent"
+             style="float: left; font-size: 2.2em; padding-top: 0.5em;"></div>
+        <div style="clear: left;">
+            <button id="CTRL4Green"
+                    address="0x1B"
+                    regOnData="+0x80"
+                    regOffData="-0x80"
+                    btnColor="green">GREEN led</button>
+            <button id="CTRL4Red"
+                    address="0x1B"
+                    regOnData="+0x40"
+                    regOffData="-0x40"
+                    btnColor="red">RED led</button>
+            <button id="CTRL4MChargeEn"
+                    address="0x1B"
+                    regOnData="+0x08"
+                    regOffData="-0x08"
+                    btnColor="indigo">Master Charge Enable</button>
+        </div>
+        <div class="center-column-header">
+            <span> </span>
+            <span>Threshold</span>
+            <span style="left: 13em;">Status</span>
+        </div>
+        <div class="chargerA">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>A</b>
+            <span id="c4AId"     class="bold"></span>
+            <span id="c4AVth"    class="space1 "> Voltage </span>
+            <span id="c4AIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c4a_pg"  class="bitfields" >PG</span>
+            <span id="c4a_otp" class="bitfields" >OTP</span>
+            <span id="c4a_otw" class="bitfields" >OTW</span>
+            <span id="c4a_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c4avolt"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="bold"></span>
+            <span id="c4acurrent" class="bold"></span>
+            <span id="c4AStatus" class="space3 bold"> </span>
+        </div>
+        <div class="chargerB">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charger <b>B</b>
+            <span id="c4BId"     class="bold"></span>
+            <span id="c4BVth"    class="space1"> Voltage </span>
+            <span id="c4BIth"    class="space2"> Current </span>
+        </div>
+        <div class="center-column-header">
+            <span id="c4b_pg"  class="bitfields" >PG</span>
+            <span id="c4b_otp" class="bitfields" >OTP</span>
+            <span id="c4b_otw" class="bitfields" >OTW</span>
+            <span id="c4b_status"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="cccv_status"></span>
+            <span id="c4bvolt"
+                  style="display: inline-block; margin-right: 0.7em;"
+                  class="bold"></span>
+            <span id="c4bcurrent" class="bold"></span>
+            <span id="c4BStatus" class="space3 bold"> </span>
+        </div>
+    </div>
+
+    <script>
+        console.log('controllers have been loaded');
+    </script>
+
+</div>

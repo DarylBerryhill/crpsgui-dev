@@ -1,0 +1,195 @@
+
+<div>
+    <style>
+
+    </style>
+
+    <h1 class="voltageTitle"> Voltage Configuration</h1>
+
+    <!--  controller-->
+    <div class="" style="text-align: center; float: left; font-size: 3.0em;">
+        <span style="align: center; "><b>Controller</b></span><br>
+
+        <label>
+            <input class="setCtrl" type="radio" value="1" name="ctrl" checked />
+            <span> 1 </span>
+        </label>
+
+        <label>
+            <input class="setCtrl" type="radio" value="2" name="ctrl" />
+            <span> 2 </span>
+        </label>
+
+        <label>
+            <input class="setCtrl" type="radio" value="3" name="ctrl" />
+            <span> 3 </span>
+        </label>
+
+        <label>
+            <input class="setCtrl" type="radio" value="4" name="ctrl" />
+            <span> 4 </span>
+        </label>
+    </div>
+
+    <!--   section-->
+    <div  class=""
+          style="text-align: center; width:10em; float: left; font-size: 3.0em;">
+        <span style="align: center;"><b>Section</b></span><br>
+
+        <label>
+            <input class="setCtrl" type="radio" value="a" name="section" checked />
+                <span> A </span><br>
+        </label>
+
+        <label>
+            <input class="setCtrl"  type="radio" value="b" name="section" />
+            <span> B </span>
+        </label>
+    </div>
+
+    <!--   mode -->
+    <div class="" style="line-height:2vh; font-size: 3.0em; float: left;">
+        <span style="align: center;"> <b>Mode</b> </span><br>
+
+        <label>
+            <input class="setCtrl" type="radio"
+                   value="v" name="rampControl" checked
+                  onclick="showSetVoltage('setVoltageUI');" />
+            <span> Set Voltage </span> <br>
+        </label>
+
+        <label>
+            <input id="rampVoltage" class="setCtrl" type="radio"
+                   value="r" name="rampControl"
+                   onclick="showRampVoltage('rampVoltageUI');" />
+            <span> Ramp Voltage </span> <br>
+        </label>
+
+        <label>
+            <input id="-readRegisters" class="setCtrl" type="radio"
+                   value="g" name="rampControl"
+                   onclick="showRegisters('RegistersUI');" />
+            <span> Read Registers </span>
+        </label>
+    </div>
+
+    <!--set voltage form -->
+    <div id="setVoltageUI" class="setVoltage" >
+        <span class="bigger"> Voltage </span>
+        <input id="volt" class="setVoltage" type="number"
+                placeholder="5.0" value="5.0" min="0" max="20.0" step="0.010"/>
+        <br>
+        <button onclick="setChargerVoltage()"
+                class="chrSetBtn"> GO </button>
+    </div>
+
+    <!--ramp voltage form -->
+    <div id="rampVoltageUI" class="rampVoltage" hidden>
+        <span class="bigger"> from </span>
+        <input id="voltageBegin" class="setVoltage"  type="number"
+                                 value="5.0" min="0" max="20.0" step="0.010"/>
+        <span class="separator bigger"> volts  </span>
+        <span class="bigger">  to </span>
+        <input id="voltageMax" class="setVoltage"  type="number"
+                                 value="16.5" min="0" max="20.0" step="0.010"/>
+        <span class="separator bigger"> volts </span>
+
+        <span class="bigger"> in </span>
+        <input id="voltageStep" class="setVoltage"  type="number"
+                                 value="10" min="10" max="1000" step="10"/>
+        <span class="separator bigger"> mvolts steps </span>
+        <span class="bigger"> every </span>
+        <input id="voltageInterval" class="setVoltage"  type="number"
+                                 value="100" min="50" max="1000" step="10"/>
+        <span class="bigger"> msec </span>  <br><br>
+
+        <input id="voltageThreshold" class="threshold"  type="checkbox" />
+        <label for="voltageThreshold">
+            <span class="bigger">or until Threshold triggers </span>
+        </label>
+        <button id="setramp" class="chrSetBtn bigger"> GO </button>
+
+        <div class="saveScript">
+        <span class="bigger"> script name </span>
+        <input class="threshold"  style="width: 25em;" type="text"
+               value="threshold"/>
+        <button style="position: relative; top: -2.0em; right: 11.0em"
+                id="saveScript" class="chrSetBtn">Save</button>
+        </div>
+    </div>
+
+    <!--show registers form -->
+    <div id="RegistersUI" class="showRegisters" hidden>
+                    <div>
+                        <button onclick="getRegisters()"
+                                class="chrSetBtn"> GO </button>
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x00</span>
+                        <span class="bigger showreg">Vout_L</span>
+                        <input id="reg1" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x01</span>
+                        <span class="bigger showreg">Vout_H</span>
+                        <input id="reg2" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x02</span>
+                        <span class="bigger showreg">GO Reg</span>
+                        <input id="reg3" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x03</span>
+                        <span class="bigger showreg">I Lim</span>
+                        <input id="reg4" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x04</span>
+                        <span class="bigger showreg">CTRL 1</span>
+                        <input id="reg5" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x05</span>
+                        <span class="bigger showreg">CTRL 2</span>
+                        <input id="reg6" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x09</span>
+                        <span class="bigger showreg">status</span>
+                        <input id="reg7" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x0A</span>
+                        <span class="bigger showreg">INTR</span>
+                        <input id="reg8" class="bigger showreg">
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x0B</span>
+                        <span class="bigger showreg">mask</span>
+                        <input id="reg9" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x0C</span>
+                        <span class="bigger showreg">ID1</span>
+                        <input id="reg10" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x27</span>
+                        <span class="bigger showreg">MFR ID</span>
+                        <input id="reg11" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x28</span>
+                        <span class="bigger showreg">DEV ID</span>
+                        <input id="reg12" class="bigger showreg" />
+                    </div>
+                    <div>
+                        <span class="bigger showreg">0x29</span>
+                        <span class="bigger showreg">IC REV</span>
+                        <input id="reg13" class="bigger showreg" />
+                    </div>
+
+    </div>
+
+</div>

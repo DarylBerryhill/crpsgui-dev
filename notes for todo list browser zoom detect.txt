@@ -1,0 +1,12 @@
+notes about detecting browser zoom
+https://gist.github.com/abilogos/66aba96bb0fb27ab3ed4a13245817d1e
+
+
+too list notes
+this one looks nice
+https://codepen.io/JohnPaulFich/pen/MXmzzM
+
+plain ui
+https://codepen.io/franklynroth/pen/ZYeaBd
+
+

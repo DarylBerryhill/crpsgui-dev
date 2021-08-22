@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+                                   maximum-scale=2.0, user-scalable=yes">
+    <title></title>
+    <link media="all" rel="stylesheet" href="src/css/html5reset.css" />
+    <link media="all" rel="stylesheet" href="src/css/styles.css" />
+</head>
+
+<body>
+
+    <div class="grid">
+        <header include-html="header/header"
+                include-js  =""
+                class       ="page-header"></header>
+
+        <main   include-html="main/main"
+                include-js  =""
+                class       ="page-main"></main>
+
+        <aside  include-html="aside/aside"
+                include-js  =""
+                class       ="page-rightbar"></aside>
+
+        <footer include-html="footer/footer"
+                include-js  =""
+                class       ="page-footer"></footer>
+    </div>
+
+    <script async src="./src/js/renderer.js"></script>
+    <script async src="./src/js/webviewer.min.js"></script>
+</body>
+</html>

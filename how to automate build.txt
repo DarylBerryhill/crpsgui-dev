@@ -1,0 +1,37 @@
+compile firmware using CodeVisionAVR
+    Project / Build All => click "Run execute program"
+    Project / Clean Up  => Click "Yes"
+    Tools --> Chip Programmer
+        capture a screen image by pressing CTRL + ALT + FN + PRTSCRN
+    open irfanview  and paste CTRL + V in the image
+    save (over-write) image as "build.jpg" in "documents" folder
+    close "IrfanView"
+    close "Chip Programmer"
+
+Change GUI version number in renderer.js
+Change GUI version number in package.json
+
+
+build gui code
+    Open CMD prompt. CD to c:\crpsgui
+    run build.bat
+    test the EXE
+
+
+Package everything in an archive ZIP
+    Open CMD prompt.
+    CD to c:\ruggedportable\bin
+    run makezip.bat
+
+files needed for makezip.bat should be included in same folder
+    grep.exe   // version 3.5
+        Source: https://sourceforge.net/projects/grep-for-windows/
+    gawk.exe
+    msys-1.0.dll (needed for gawk.exe)
+    wzzip.exe (install WinZIP and command line extention add-on)
+
+
+manually copy firmware C source files to github
+
+
+open Github desktop and push commits

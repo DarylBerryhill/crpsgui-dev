@@ -1,0 +1,126 @@
+// Rules to satisfy ESLint requirements. http://new.jslint.com/
+/* jslint browser: true, esnext: true, maxlen: 100, multivar: true, node: true */
+
+// *****************      CHARGER utilities   ***************************
+/*
+    Usage:
+       const charger = require('${path}chargerUtil.nmjs');
+
+    Returns:
+        charger. ()
+        charger. ()
+        charger. ()
+        charger. ()
+
+*/
+
+module.exports =
+{
+    //  Requires:
+    //       
+    read: ()=>
+    {
+        port.write('eeprom read raw\r');
+    },
+
+    //  Requires:
+    //    ID: eeprom
+    //    class: eepromData
+    // consider breaking up into seperate functions
+    //    id: saveProgress
+    //    id: file
+    //    id: progressLabel
+    //    port.write (serial library)
+    save: ()=>
+    {
+        let eepromData      = document.getElementById('eeprom');
+        let eepromDataClass = eepromData.getElementsByClassName('eepromData');
+        let end             = eepromDataClass.length;
+        let addr          = 0;
+        let data          = [];
+        let intervalId    = 0;
+        let progressLabel = 0;
+        let progressBar   = 0;
+        let saving        = 0;
+        let edata         = '';
+
+
+        // get eeprom data strings and convert to ascii
+        for (addr= 0; addr < end; addr++)
+        {
+            // gets the innerHTML string
+            edata = eepromDataClass[addr].innerHTML;
+
+            // in the first 64 bytes [4 rows (addr 0x00 - 0x3F)] of eeprom data
+            // convert character string to integer ascii code
+            if (addr < 64)
+            {
+                //  change to integer asii code unless 255 or NUL
+                if ( (edata === '255') | (edata === 'FF'))
+                    { data[addr] = 255; }
+                else if ( edata === 'nul')
+                    { data[addr] = 0;   }
+                // assumes it is a printable character, will fail if outside ascii 32-126
+                else
+                    { data[addr] = edata.charCodeAt(0); }
+            }
+            // remainder of eeprom data, rows 4,5,6 (0x40 - 0x6f)
+            else
+            {
+                // convert character string to hex
+                data[addr] = parseInt(edata, 16);
+            }
+        }
+
+        // prepare progress bar
+        addr = 0;
+        document.getElementById('saveProgress').classList.remove('hide');
+        progressBar   = document.getElementById('file');
+        progressLabel = document.getElementById('progressLabel')
+                                .getElementsByTagName('span')[0];
+
+        // start sending each byte to the processor and updating the progress bar
+        // send to MCU every 100ms
+        intervalId = setInterval(()=>
+        {
+          saving = parseInt((addr/111) * 100,10);
+          progressLabel.textContent = 'saving ...' + saving +'%';
+          progressBar.value = saving;
+          port.write(`eeprom write ${addr} ${data[addr]}\r`);
+
+          if (addr === 111) { progressLabel.textContent ='Done'; clearInterval(intervalId); }
+
+          addr++;
+
+        }, 100);
+    },
+
+    //  Requires:
+    //    ID: eeprom
+    //    class: eepromData
+    erase: ()=>
+    {
+        let eepromData      = document.getElementById('eeprom');
+        let eepromDataClass = eepromData.getElementsByClassName('eepromData');
+        let end             = eepromDataClass.length;
+        let addr          = 0;
+
+
+        // get all eeprom data strings and set to 'FF'
+        for (addr = 0; addr < end; addr++)
+        {
+            eepromDataClass[addr].innerHTML = 'FF';
+        }
+
+        // except for address 0x40 We don't wont it going into bootloader
+        eepromDataClass[0x40].innerHTML = 1;
+    },
+
+    //  Requires:
+    //   needs a PDF viewer
+    // or even better. interactive HTML pop-up for each address location
+    map: (PDFfile)=>
+    {
+        console.log( PDFfile );
+    }
+};

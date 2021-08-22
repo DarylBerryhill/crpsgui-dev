@@ -1,0 +1,263 @@
+<!--
+code to dynamically load javascript
+
+        var scriptTag = document.createElement('script');
+        scriptTag.src = script;
+        scriptTag.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(scriptTag);<!--
+
+-->
+
+<div id="eeprom"
+     style="float: left; margin: 2.0em 3.0em 2.0em 1.0em; ">
+
+    <style>
+         .eepromData
+         {
+            display: inline-block;
+            width:  1.65vw;
+            height: 1.25vh;
+            margin: 0.2em 0.3em 0.2em 0.2em; /* 1px 2px 1px 2px; */
+            padding: 0.2em 0.6em 0.2em 0.6em; /* 2px 5px 2px 5px; */
+            background-color: lightblue;
+            color: black;
+            border: 0.2em solid black;
+            overflow: hidden;
+            text-overflow: clip;
+            text-align: center;
+            font-size: 2.2em;
+         }
+
+         .hexColumn
+         {
+            display: inline-block;
+            width:  1.65vw;
+            height: 1.25vh;
+            padding: 0.2em 0.6em 0.2em 0.6em; /* 2px 5px 2px 5px; */
+            border: 0.2em solid black;
+            margin: 0.2em 0.3em 0.2em 0.2em; /* 1px 2px 1px 2px; */
+            text-align: center;
+            background-color: transparent;
+            color: black;
+            font-size: 2.2em;
+        }
+    </style>
+
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="hexColumn">00</span>
+    <span class="hexColumn">01</span>
+    <span class="hexColumn">02</span>
+    <span class="hexColumn">03</span>
+    <span class="hexColumn">04</span>
+    <span class="hexColumn">05</span>
+    <span class="hexColumn">06</span>
+    <span class="hexColumn">07</span>
+    <span class="hexColumn">08</span>
+    <span class="hexColumn">09</span>
+    <span class="hexColumn">0A</span>
+    <span class="hexColumn">0B</span>
+    <span class="hexColumn">0C</span>
+    <span class="hexColumn">0D</span>
+    <span class="hexColumn">0E</span>
+    <span class="hexColumn">0F</span><br>
+    <span style="font-size: 2.0em; vertical-align: top;">00</span>
+    <span class="eepromData" address="0" contenteditable="true"> </span>
+    <span class="eepromData" address="1" contenteditable="true"> </span>
+    <span class="eepromData" address="2" contenteditable="true"> </span>
+    <span class="eepromData" address="3" contenteditable="true"> </span>
+    <span class="eepromData" address="4" contenteditable="true"> </span>
+    <span class="eepromData" address="5" contenteditable="true"> </span>
+    <span class="eepromData" address="6" contenteditable="true"> </span>
+    <span class="eepromData" address="7" contenteditable="true"> </span>
+    <span class="eepromData" address="8" contenteditable="true"> </span>
+    <span class="eepromData" address="9" contenteditable="true"> </span>
+    <span class="eepromData" address="10" contenteditable="true"> </span>
+    <span class="eepromData" address="11" contenteditable="true"> </span>
+    <span class="eepromData" address="12" contenteditable="true"> </span>
+    <span class="eepromData" address="13" contenteditable="true"> </span>
+    <span class="eepromData" address="14" contenteditable="true"> </span>
+    <span class="eepromData" address="15" contenteditable="true"> </span><br>
+    <span style="font-size: 2.0em; vertical-align: top;">10</span>
+    <span class="eepromData" address="16" contenteditable="true"> </span>
+    <span class="eepromData" address="17" contenteditable="true"> </span>
+    <span class="eepromData" address="18" contenteditable="true"> </span>
+    <span class="eepromData" address="19" contenteditable="true"> </span>
+    <span class="eepromData" address="20" contenteditable="true"> </span>
+    <span class="eepromData" address="21" contenteditable="true"> </span>
+    <span class="eepromData" address="22" contenteditable="true"> </span>
+    <span class="eepromData" address="23" contenteditable="true"> </span>
+    <span class="eepromData" address="24" contenteditable="true"> </span>
+    <span class="eepromData" address="25" contenteditable="true"> </span>
+    <span class="eepromData" address="26" contenteditable="true"> </span>
+    <span class="eepromData" address="27" contenteditable="true"> </span>
+    <span class="eepromData" address="28" contenteditable="true"> </span>
+    <span class="eepromData" address="29" contenteditable="true"> </span>
+    <span class="eepromData" address="30" contenteditable="true"> </span>
+    <span class="eepromData" address="31" contenteditable="true"> </span><br>
+    <span style="font-size: 2.0em; vertical-align: top;">20</span>
+    <span class="eepromData" address="32" contenteditable="true"> </span>
+    <span class="eepromData" address="33" contenteditable="true"> </span>
+    <span class="eepromData" address="34" contenteditable="true"> </span>
+    <span class="eepromData" address="35" contenteditable="true"> </span>
+    <span class="eepromData" address="36" contenteditable="true"> </span>
+    <span class="eepromData" address="37" contenteditable="true"> </span>
+    <span class="eepromData" address="38" contenteditable="true"> </span>
+    <span class="eepromData" address="39" contenteditable="true"> </span>
+    <span class="eepromData" address="40" contenteditable="true"> </span>
+    <span class="eepromData" address="41" contenteditable="true"> </span>
+    <span class="eepromData" address="42" contenteditable="true"> </span>
+    <span class="eepromData" address="43" contenteditable="true"> </span>
+    <span class="eepromData" address="44" contenteditable="true"> </span>
+    <span class="eepromData" address="45" contenteditable="true"> </span>
+    <span class="eepromData" address="46" contenteditable="true"> </span>
+    <span class="eepromData" address="47" contenteditable="true"> </span><br>
+    <span style="font-size: 2.0em; vertical-align: top;">30</span>
+    <span class="eepromData" address="48" contenteditable="true"> </span>
+    <span class="eepromData" address="49" contenteditable="true"> </span>
+    <span class="eepromData" address="50" contenteditable="true"> </span>
+    <span class="eepromData" address="51" contenteditable="true"> </span>
+    <span class="eepromData" address="52" contenteditable="true"> </span>
+    <span class="eepromData" address="53" contenteditable="true"> </span>
+    <span class="eepromData" address="54" contenteditable="true"> </span>
+    <span class="eepromData" address="55" contenteditable="true"> </span>
+    <span class="eepromData" address="56" contenteditable="true"> </span>
+    <span class="eepromData" address="57" contenteditable="true"> </span>
+    <span class="eepromData" address="58" contenteditable="true"> </span>
+    <span class="eepromData" address="59" contenteditable="true"> </span>
+    <span class="eepromData" address="60" contenteditable="true"> </span>
+    <span class="eepromData" address="61" contenteditable="true"> </span>
+    <span class="eepromData" address="62" contenteditable="true"> </span>
+    <span class="eepromData" address="63" contenteditable="true"> </span><br>
+    <span style="font-size: 2.0em; vertical-align: top;">40</span>
+    <span class="eepromData" address="64" contenteditable="true"> </span>
+    <span class="eepromData" address="65" contenteditable="true"> </span>
+    <span class="eepromData" address="66" contenteditable="true"> </span>
+    <span class="eepromData" address="67" contenteditable="true"> </span>
+    <span class="eepromData" address="68" contenteditable="true"> </span>
+    <span class="eepromData" address="69" contenteditable="true"> </span>
+    <span class="eepromData" address="70" contenteditable="true"> </span>
+    <span class="eepromData" address="71" contenteditable="true"> </span>
+    <span class="eepromData" address="72" contenteditable="true"> </span>
+    <span class="eepromData" address="73" contenteditable="true"> </span>
+    <span class="eepromData" address="74" contenteditable="true"> </span>
+    <span class="eepromData" address="75" contenteditable="true"> </span>
+    <span class="eepromData" address="76" contenteditable="true"> </span>
+    <span class="eepromData" address="77" contenteditable="true"> </span>
+    <span class="eepromData" address="78" contenteditable="true"> </span>
+    <span class="eepromData" address="79" contenteditable="true"> </span><br>
+    <span style="font-size: 2.0em; vertical-align: top;">50</span>
+    <span class="eepromData" address="80" contenteditable="true"> </span>
+    <span class="eepromData" address="81" contenteditable="true"> </span>
+    <span class="eepromData" address="82" contenteditable="true"> </span>
+    <span class="eepromData" address="83" contenteditable="true"> </span>
+    <span class="eepromData" address="84" contenteditable="true"> </span>
+    <span class="eepromData" address="85" contenteditable="true"> </span>
+    <span class="eepromData" address="86" contenteditable="true"> </span>
+    <span class="eepromData" address="87" contenteditable="true"> </span>
+    <span class="eepromData" address="88" contenteditable="true"> </span>
+    <span class="eepromData" address="89" contenteditable="true"> </span>
+    <span class="eepromData" address="90" contenteditable="true"> </span>
+    <span class="eepromData" address="91" contenteditable="true"> </span>
+    <span class="eepromData" address="92" contenteditable="true"> </span>
+    <span class="eepromData" address="93" contenteditable="true"> </span>
+    <span class="eepromData" address="94" contenteditable="true"> </span>
+    <span class="eepromData" address="95" contenteditable="true"> </span><br>
+    <span style="font-size: 2.0em; vertical-align: top;">60</span>
+    <span class="eepromData" address="96" contenteditable="true"> </span>
+    <span class="eepromData" address="97" contenteditable="true"> </span>
+    <span class="eepromData" address="98" contenteditable="true"> </span>
+    <span class="eepromData" address="99" contenteditable="true"> </span>
+    <span class="eepromData" address="100" contenteditable="true"> </span>
+    <span class="eepromData" address="101" contenteditable="true"> </span>
+    <span class="eepromData" address="102" contenteditable="true"> </span>
+    <span class="eepromData" address="103" contenteditable="true"> </span>
+    <span class="eepromData" address="104" contenteditable="true"> </span>
+    <span class="eepromData" address="105" contenteditable="true"> </span>
+    <span class="eepromData" address="106" contenteditable="true"> </span>
+    <span class="eepromData" address="107" contenteditable="true"> </span>
+    <span class="eepromData" address="108" contenteditable="true"> </span>
+    <span class="eepromData" address="109" contenteditable="true"> </span>
+    <span class="eepromData" address="110" contenteditable="true"> </span>
+    <span class="eepromData" address="111" contenteditable="true"> </span>
+</div>
+
+
+<div id="eepromCNTL"
+     style="margin-top: 2em; float: left; width: 10em; line-height: 10em;">
+
+    <button onclick="eeprom.read();">Read EPROM</button> <br>
+    <button onclick="eeprom.save();">Save EPROM</button> <br>
+    <button  >Memory Map</button>
+    <button onclick="eeprom.erase();">Erase EEPROM</button>
+</div>
+
+<div id="saveProgress" class="hide">
+    <style>
+
+        progress
+        {
+            position: absolute;
+            top: 55em;
+            left: 3em;
+            width: 143em;
+            height: 4em;
+            display: block;
+            appearance: none;
+            border: none;
+        }
+
+        progress::-webkit-progress-bar
+        {
+             background: black;
+             border-radius: 10em;
+             padding: 0.3em;
+             box-shadow: 0em 0em.2em 0em 0em rgba(255, 255, 255, 0.2);
+        }
+
+
+        progress::-webkit-progress-value
+        {
+           border-radius: 10em;
+           box-shadow: inset 0em 0.1em 0.1em 0em rgba(255, 255, 255, 0.4);
+           background:
+           -webkit-linear-gradient(45deg, transparent, transparent 33%,
+                                   rgba(0, 0, 0, 0.1) 33%,
+                                   rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+           -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
+           -webkit-linear-gradient(left, red, #ba7448);
+
+           background-size: 2.2em 11.2em, 100% 100%, 100% 100%;
+           animation: move 5s linear 0 infinite;
+        }
+
+        @keyframes move
+        {
+            0%   {background-position: 0em 0em, 0 0, 0 0}
+            100% {background-position: 8em 0em, 0 0, 0 0}
+        }
+
+        #progressLabel
+        {
+            position: absolute;
+            top: 28em;
+            left: 35em;
+            color: white;
+            font-size: 2em;
+            width: 10em;
+        }
+    </style>
+    <progress id="file" value="0" max="100"></progress>
+    <div id="progressLabel"><span>10%</span></div>
+</div>
+<div id="viewer"
+     style="
+            display: none;
+            /*  width: calc(100% - 330px);*/
+            /*  height: calc(100% - 60px);*/
+            width: 600px;
+            height:800px;
+            margin-top: 60px;
+            margin-left: 330px;
+            box-shadow: 1px 1px 10px #999;">
+
+</div>

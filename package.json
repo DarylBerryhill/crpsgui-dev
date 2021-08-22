@@ -1,0 +1,79 @@
+{
+    "name": "CRPSgui",
+    "version": "1.12.1",
+    "description": "controlling CRPS processor for engineering",
+    "author": {
+        "name": "Rugged Portable Computers, llc",
+        "email": "jberryhill@maxvision.com"
+    },
+    "license": "MIT",
+    "homepage": "http://www.maxvision.com",
+    "main": "src/js/main.js",
+    "scripts": {
+        "start": "electron .",
+        "install": "electron-rebuild",
+        "pack": "electron-builder --dir",
+        "makeExe": "electron-builder",
+        "build": "electron-builder build  --win --publish never",
+        "deploy": "electron-builder build --win --publish always",
+        "postinstall": "electron-builder install-app-deps"
+    },
+    "devDependencies": {
+        "electron": "^11.2.0",
+        "electron-builder": "^22.11.7",
+        "electron-rebuild": "^2.3.4"
+    },
+    "dependencies": {
+        "@serialport/parser-delimiter": "^9.0.7",
+        "@serialport/parser-inter-byte-timeout": "^9.0.7",
+        "@serialport/parser-readline": "^9.0.7",
+        "electron-log": "^4.4.1",
+        "electron-updater": "^4.3.9",
+        "serialport": "^9.0.6",
+        "tableify": "^1.1.0",
+        "tabs": "^0.2.0"
+    },
+    "build": {
+        "appId": "com.electron.crpsgui",
+        "productName": "CRPSgui-1.12.1",
+        "copyright": "©2021 ${author}",
+        "artifactName": "${name}-v${version}-install.exe",
+        "buildDependenciesFromSource": true,
+        "compression": "maximum",
+        "asar": true,
+        "directories": {
+            "output": "release"
+        },
+        "extraFiles": [
+            "bootloader"
+        ],
+        "win": {
+            "target": "nsis",
+            "icon": "src\\assets\\RPC-MaxUPS-App.ico",
+            "legalTrademarks": "MPS CRPS MAXPAC"
+        },
+        "publish": [
+            {
+                "provider": "github",
+                "owner": "RPC-MaxVision",
+                "repo": "CRPS-gui",
+                "token": "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"
+            }
+        ]
+    },
+    "publish": {
+        "provider": "github",
+        "releaseType": "release"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RPC-MaxVision/CRPS-gui.git"
+    },
+    "keywords": [
+        "Electron",
+        "crps",
+        "mps",
+        "serial",
+        "rpc"
+    ]
+}

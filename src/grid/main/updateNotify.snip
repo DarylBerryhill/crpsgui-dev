@@ -1,0 +1,56 @@
+
+<div id="notification" class="update_win  ">
+<style>
+
+    .update_win
+    {
+
+/*
+        visibility:hidden;
+        width: 50em; height: 28em;
+        border: 0.1em black solid;
+        border-radius: 1em;
+        box-shadow: 1px 1px 10px #999;
+        text-align:center;
+        position: absolute;
+        top: 37em;
+        margin:0 30%;
+        padding: 1em;
+        background-color: antiquewhite;
+
+*/
+    }
+
+    #notification
+    {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 200px;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .hidden
+    {
+        display: none;
+    }
+
+</style>
+
+
+    <p id="message"></p>
+    <button id="close-button"
+            onclick="document.getElementById('notification').classList.add('hidden');">
+        Close
+    </button>
+
+    <button id="restart-button" class="hidden"
+            onclick="ipcRenderer.send('restart_and_update');">
+        Restart
+    </button>
+
+
+</div>

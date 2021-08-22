@@ -1,0 +1,15 @@
+      {
+        "autoOpen": false,
+        "baudRate": 115200,
+        "dataBits": 8,
+        "endOnClose": true,
+        "highWaterMark": 512,
+        "hupcl": true,
+        "lock": true,
+        "parity": "none",
+        "rtscts": false,
+        "stopBits": 1,
+        "xany": false,
+        "xoff": false,
+        "xon": false
+      }

@@ -1,0 +1,110 @@
+// Rules to satisfy ESLint requirements. http://new.jslint.com/
+/* jslint browser: true, esnext: true, maxlen: 100, multivar: true, node: true */
+
+// *****************     Front Panel Control   ***************************
+/*
+    Usage:
+       const fpio = require('${path}fpio.nmjs');
+
+    Returns:
+        fpio.portA
+        fpio.portD
+        fpio.portF
+        fpio.green()
+        fpio.red()
+        fpio.beeper()
+*/
+
+module.exports =
+{
+    portA: 0,
+    portD: 0,
+    portF: 0,
+
+    //  Requires:
+    //    fpio custom module from fpio.nmjs
+    //    port.write (serial library)
+    green: (el) =>
+    {
+        // this converts string to an integer, XOR with 0, invert boolean state
+        // !+   "1"   ^ 0   returns 0
+        // !+   "0"   ^ 0   returns 1
+        // let currentState =  +(el.getAttribute('state'))^0;
+        // let nextState    = !(currentState)^0;
+
+        let nextState =  +!(fpio.portD & 32); // get bit 5 and invert boolean value
+
+        // el.setAttribute('state', nextState);
+
+        port.write(`set gpio d 5 ${nextState}\r`);
+
+        setTimeout(()=>
+        {
+            port.write('mode gui\r');
+        }, 50);
+
+        hardwareTimeout = setTimeout(()=>
+        {
+            portMessage.classList.remove('hide');
+            portMessage.classList.add('red');
+            portMessage.innerHTML =  "No response from hardware. Make sure power is on.";
+        }, 3000);
+    },
+
+    //  Requires:
+    //    fpio custom module from fpio.nmjs
+    //    port.write (serial library)
+    red: (el) =>
+    {
+        // let currentState =  +(el.getAttribute('state'))^0;
+        // let nextState    = !(currentState)^0;
+
+       let  nextState =  +!(fpio.portF & 16);
+
+        // el.setAttribute('state', nextState);
+
+        port.write(`set gpio f 4 ${nextState}\r`);
+
+        setTimeout(()=>
+        {
+            port.write('mode gui\r');
+        }, 50);
+
+        hardwareTimeout = setTimeout(()=>
+        {
+            portMessage.classList.remove('hide');
+            portMessage.classList.add('red');
+            portMessage.innerHTML =  "No response from hardware. Make sure power is on.";
+        }, 3000);
+
+    },
+
+    //  Requires:
+    //    fpio custom module from fpio.nmjs
+    //    port.write (serial library)
+    beeper: (el)=>
+    {
+        // let currentState =  +(el.getAttribute('state'))^0;
+        // let nextState    = !(currentState)^0;
+
+        let nextState =  +!(fpio.portA & 128);
+
+        // el.setAttribute('state', nextState);
+
+        port.write(`set gpio a 7 ${nextState}\r`);
+
+        setTimeout(()=>
+        {
+            port.write('mode gui\r');
+        }, 50);
+
+        hardwareTimeout = setTimeout(()=>
+        {
+            portMessage.classList.remove('hide');
+            portMessage.classList.add('red');
+            portMessage.innerHTML =  "No response from hardware. Make sure power is on.";
+        }, 3000);
+
+    }
+
+};

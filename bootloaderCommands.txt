@@ -1,0 +1,143 @@
+bootloader commands
+
+=== safe commands ======
+
+r - read lock bits
+    returns lockbits data byte
+    0x3F
+
+F - read fuse bits, low byte
+    returns fuse bits, low data byte
+    0x3F
+
+N - read fuse bits, high byte
+    returns fuse bits, high data byte
+    0x3F
+
+Q - read fuse bits extended byte
+    returns fuse bits, extended data byte
+    0x3F
+
+P - get programmer type
+    returns 'S' for serial
+    0x0D
+
+t -get supported device codes
+    returns <partcode><0>
+    0xFA 0x00
+
+S - -get programmer identifier. always 7 characters
+    returns 'A''V''R''B''O''O''T'
+
+V - get software version
+    returns '1''6'
+
+s - return signature bytes
+    returns <byte3><byte2><byte1>
+    0x4C, 0x97, 0x1E
+
+a - check auto increment status
+    returns 'Y'
+
+
+
+
+====================================================================================
+
+case sensitive
+
+a - check auto increment status
+    returns Y
+
+A<low byte><high byte> - set flash address
+    returns '\r' (CR)
+
+H<low byte><high byte><extended byte> - set extended address
+     returns '\r' (CR)
+
+e - chip erase, flash and eeprom
+    returns '\r' (CR)
+
+b - report block load support and size
+    returns Y<blocksize high byte><blocksize low byte>
+
+B<low byte><high byte>"memtype" - start block load
+    EEPROM memory type. memtype = E
+    FLASH memory type.  memtype = F
+    returns  '\r' (CR) for OK
+    returns '?' fro unknown memory type
+
+g<low byte><high byte>"memtype" - start block read
+    EEPROM memory type. memtype = E
+    FLASH memory type.  memtype = F
+    returns  a block of eeprom or FLASH data
+
+R - read program memory
+    returns high byte an low byte of flash word
+
+c<low byte> - write program memory low byte
+    returns '\r' (CR)
+
+C<low byte><high byte> - write program memory high byte
+    returns '\r' (CR)
+
+m - write page
+    returns '?' if address is in bootloader area
+    returns '\r' (CR)
+
+D<data byte> - write EEPROM memory
+    returns nothing
+
+d - read EEPROM memory
+    returns reads a byte from eeprom and returns value of EEPROM_ReadByte() function
+
+l<data byte> - write lockbits
+    returns '\r' (CR)
+
+r - read lock bits
+    returns lockbits data byte
+
+F - read fuse bits, low byte
+    returns fuse bits, low data byte
+
+N - read fuse bits, high byte
+    returns fuse bits, high data byte
+
+Q - read fuse bits extended byte
+    returns fuse bits, extended data byte
+
+P - nothing special
+    returns '\r' (CR)
+
+L - nothing special
+    returns '\r' (CR)
+
+E - exit bootloader
+    returns '\r' (CR)
+
+P - get programmer type
+    returns 'S' for serial
+
+t -get supported device codes
+    returns <partcode><0>
+
+x<optional int> - set LED, clear LED, get device type. IGNORED
+    returns '\r' (CR)
+
+y<optional int> - set LED, clear LED, get device type. IGNORED
+    returns '\r' (CR)
+
+T<optional int> - set LED, clear LED, get device type. IGNORED
+    returns '\r' (CR)
+
+S - -get programmer identifier. always 7 characters
+    returns 'A''V''R''B''O''O''T'
+
+V - get software version
+    returns '1''6'
+
+s - return signature bytes
+    returns <byte3><byte2><byte1>
+
+all other characters
+    returns '?'
